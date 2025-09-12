@@ -8,7 +8,18 @@
 </head>
 <body>
     <h1>Crypto Dashboard</h1>
+
+    <label for="coinSelect">Choose a coin:</label>
+    <select id="coinSelect">
+        <option value="bitcoin">Bitcoin</option>
+        <option value="ethereum">Ethereum</option>
+        <option value="dogecoin">Dogecoin</option>
+    </select>
+
+    <div class="charts">
     <canvas id="priceChart"></canvas>
+    <canvas id="volumeChart"></canvas>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
