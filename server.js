@@ -1,15 +1,22 @@
-//server.js
+/**
+ * Crypto Dashboard Backend
+ * -------------------------
+ * A simple Express server that proxies requests to the CoinGecko API.
+ * This avoids CORS issues in the browser and provides a clean endpoint
+ * for the frontend to fetch cryptocurrency market data.
+ */
+
 const express = require("express");
 const app = express();
 const PORT = 3000;
 
-//Allow frontend to request
+// Allow cross-origin requests from the frontend
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
 });
 
-//API route for any coin
+// API route: fetch 7-day market data (price & volume) for a given coin
 app.get("/api/:coin", async (req, res)=> {
     const coin = req.params.coin;
     try {
@@ -23,6 +30,7 @@ app.get("/api/:coin", async (req, res)=> {
     }
 });
 
+// Start the Express server
 app.listen(PORT, () =>
 console.log(`✅ Server running on http://localhost:${PORT}`)
 );

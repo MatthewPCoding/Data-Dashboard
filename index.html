@@ -1,3 +1,10 @@
+<!--
+  Crypto Dashboard
+  ----------------
+  Frontend interface for selecting a cryptocurrency and viewing
+  its 7-day price and volume charts. Uses Chart.js for visualization
+  and a Node/Express backend as an API proxy.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +16,7 @@
 <body>
     <h1>Crypto Dashboard</h1>
 
+     <!-- Coin selection dropdown -->
     <label for="coinSelect">Choose a coin:</label>
     <select id="coinSelect">
         <option value="bitcoin">Bitcoin</option>
@@ -16,11 +24,13 @@
         <option value="dogecoin">Dogecoin</option>
     </select>
 
+     <!-- Charts container -->
     <div class="charts">
     <canvas id="priceChart"></canvas>
     <canvas id="volumeChart"></canvas>
     </div>
 
+      <!-- External libraries and main script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>

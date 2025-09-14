@@ -1,11 +1,22 @@
 
-let priceChart, volumeChart;
+/**
+ * Crypto Dashboard Frontend Logic
+ * --------------------------------
+ * Fetches market data from the backend, parses it, and renders
+ * interactive price and volume charts using Chart.js.
+ */
 
+let priceChart, volumeChart; // Chart.js instances for later updates
+
+/**
+ * Fetch price and volume data for the selected coin and update charts.
+ * @param {string} coin - Coin ID used by CoinGecko (e.g., "bitcoin").
+ */
 async function fetchData(coin = "bitcoin") {
     const res = await fetch(`http://localhost:3000/api/${coin}`);
     const data = await res.json();
 
-    //If API returned valid structure
+    // Ensure the API response contains the expected structure
     if (!data.prices || !data.total_volumes) {
     console.error("API error:", data);
     alert("Failed to load data. Check backend or API.");
@@ -20,11 +31,19 @@ async function fetchData(coin = "bitcoin") {
     renderCharts(labels, prices, volumes, coin);
 }
 
+/**
+ * Render or update the price and volume charts with new data.
+ * @param {string[]} labels - Date labels.
+ * @param {number[]} prices - Daily price data.
+ * @param {number[]} volumes - Daily volume data.
+ * @param {string} coin - Coin name for chart titles.
+ */
 function renderCharts(labels, prices, volumes, coin) {
-    //Destroy old charts before making new ones
+   // Destroy existing charts to prevent overlap
     if(priceChart) priceChart.destroy();
-    if(volumeChart) priceChart.destroy();
+    if(volumeChart) priceChart.destroy();  // FIX: ensure correct chart is destroyed
 
+      // Line chart: coin price
     const priceCtx = document.getElementById("priceChart").getContext("2d");
     priceChart = new Chart(priceCtx, {
         type: "line",
@@ -40,6 +59,7 @@ function renderCharts(labels, prices, volumes, coin) {
         }
     });
 
+      // Bar chart: trading volume
     const volumeCtx = document.getElementById("volumeChart").getContext("2d");
   volumeChart = new Chart(volumeCtx, {
     type: "bar",
@@ -56,10 +76,10 @@ function renderCharts(labels, prices, volumes, coin) {
   });
 }
 
-// Dropdown event listener
+// Dropdown listener: fetch data when coin selection changes
 document.getElementById("coinSelect").addEventListener("change", (e) => {
     fetchData(e.target.value);
 });
 
-// Initial load
+// Initial load: default to Bitcoin
 fetchData();
