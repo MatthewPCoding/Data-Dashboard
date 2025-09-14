@@ -1,10 +1,52 @@
 # Data-Dashboard
 
-A full-stack JavaScript project that fetches cryptocurrency data from the CoinGecko API
- and visualizes it with interactive charts.
+A full-stack JavaScript application that fetches cryptocurrency data from the CoinGecko API and visualizes it with interactive charts.
 
- Frontend: HTML, CSS, JavaScript, Chart.js
+🚀 Features
 
- Backend: Node.js (Express + Fetch)
+Dropdown Selection: Choose between Bitcoin, Ethereum, and Dogecoin (easy to extend).
 
- Features: Dropdown to choose coins, price & volume charts, clean UI
+Interactive Charts: Line chart for price data and bar chart for trading volume over the past 7 days.
+
+Backend Proxy: Node.js + Express backend handles API requests and CORS.
+
+Responsive UI: Clean and simple layout that works across devices.
+
+🛠 Tech Stack
+
+Frontend
+
+HTML5, CSS3
+
+JavaScript (ES6+)
+
+Chart.js for data visualization
+
+Backend
+
+Node.js
+
+Express.js
+
+Native Fetch API
+
+🌐 API Source
+
+Data is provided by the free CoinGecko API. Note that CoinGecko enforces rate limits; heavy usage may require caching or throttling.
+
+⚡ Getting Started
+1. Clone the Repository
+git clone https://github.com/<your-username>/crypto-dashboard.git
+cd crypto-dashboard
+2. Install Dependencies
+npm install
+
+3. Start the Backend Server
+node server.js
+
+Server runs on:
+
+http://localhost:3000
+4. Open the Frontend
+
+Simply open index.html in your browser.
