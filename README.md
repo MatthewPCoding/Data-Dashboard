@@ -19,15 +19,6 @@ A full-stack JavaScript application that fetches cryptocurrency data from the [C
 - Express.js
 - Native Fetch API
 
-## 📂 Project Structure
-crypto-dashboard/
-│── server.js # Node.js backend
-│── index.html # Frontend structure
-│── style.css # Frontend styling
-│── script.js # Frontend logic
-│── README.md # Project documentation
-
-
 ## ⚡ Getting Started
 
 ### 1. Clone the Repository
