@@ -35,18 +35,20 @@ Native Fetch API
 Data is provided by the free CoinGecko API. Note that CoinGecko enforces rate limits; heavy usage may require caching or throttling.
 
 ⚡ Getting Started
-1. Clone the Repository
+1. Clone the Repository:
+
 git clone https://github.com/<your-username>/crypto-dashboard.git
 cd crypto-dashboard
-2. Install Dependencies
+
+2. Install Dependencies:
 npm install
 
-3. Start the Backend Server
+3. Start the Backend Server:
 node server.js
 
 Server runs on:
-
 http://localhost:3000
+
 4. Open the Frontend
 
 Simply open index.html in your browser.
