@@ -1,6 +1,6 @@
 # Data-Dashboard
 
-A simple full-stack JavaScript project that fetches cryptocurrency data from the CoinGecko API
+A full-stack JavaScript project that fetches cryptocurrency data from the CoinGecko API
  and visualizes it with interactive charts.
 
  Frontend: HTML, CSS, JavaScript, Chart.js
