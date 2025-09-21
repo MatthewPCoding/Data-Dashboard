@@ -24,10 +24,9 @@ app.use((req, res, next) => {
 app.get("/api/:coin", async (req, res)=> {
     const coin = req.params.coin;
     const now = Date.now();
-    const oneMinute = 60 * 1000;
 
      //Serve cached data if it's less than 1 minute old
-  if (cache[coin] && now - cache[coin].timestamp < oneMinute) {
+  if (cache[coin] && now - cache[coin].timestamp < 60_000) {
     return res.json(cache[coin].data);
   }
 
@@ -40,9 +39,10 @@ app.get("/api/:coin", async (req, res)=> {
 
         // Store fresh data and timestamp
     cache[coin] = { data, timestamp: now };
-    
+
         res.json(data);
     } catch (err) {
+         console.error(err);
         res.status(500).json({ error: "Failed to fetch data" });
     }
 });
