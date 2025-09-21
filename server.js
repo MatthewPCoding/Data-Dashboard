@@ -24,9 +24,10 @@ app.use((req, res, next) => {
 app.get("/api/:coin", async (req, res)=> {
     const coin = req.params.coin;
     const now = Date.now();
+    const TWELVE_HOURS = 12 * 60 * 60 * 1000;
 
      //Serve cached data if it's less than 1 minute old
-  if (cache[coin] && now - cache[coin].timestamp < 10 * 60 *1000) {
+  if (cache[coin] && now - cache[coin].timestamp < TWELVE_HOURS) {
     return res.json(cache[coin].data);
   }
 
