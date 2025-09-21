@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard</title>
+    <link rel="stylesheet" href="stylex.css">
+</head>
+<body>
+    <h1>Crypto Dashboard</h1>
+
+     <!-- Coin selection dropdown -->
+    <label for="coinSelect">Choose a coin:</label>
+    <select id="coinSelect">
+        <option value="bitcoin">Bitcoin</option>
+        <option value="ethereum">Ethereum</option>
+        <option value="dogecoin">Dogecoin</option>
+    </select>
+
+     <!-- Charts container -->
+    <div class="charts">
+    <canvas id="priceChart"></canvas>
+    <canvas id="volumeChart"></canvas>
+    </div>
+
+      <!-- External libraries and main script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
