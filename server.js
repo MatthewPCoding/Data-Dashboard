@@ -38,6 +38,12 @@ app.get("/api/:coin", async (req, res)=> {
         );
         const data = await response.json();
 
+          if (data.status?.error_code) {
+      return res.status(429).json({
+        error: "CoinGecko rate limit reached. Please try again later."
+      });
+    }
+
         // Store fresh data and timestamp
     cache[coin] = { data, timestamp: now };
 
