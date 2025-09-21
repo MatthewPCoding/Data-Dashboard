@@ -8,11 +8,13 @@
 
 const express = require("express");
 const path = require("path");
+const fetch = require("node-fetch"); // npm install node-fetch
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Simple in-memory cache object
 const cache = {};
+const CACHE_WINDOW = 12 * 60 * 60 * 1000; // 12 hours
 
 // Allow cross-origin requests from the frontend
 app.use((req, res, next) => {
@@ -24,10 +26,9 @@ app.use((req, res, next) => {
 app.get("/api/:coin", async (req, res)=> {
     const coin = req.params.coin;
     const now = Date.now();
-    const TWELVE_HOURS = 12 * 60 * 60 * 1000;
 
      //Serve cached data if it's less than 1 minute old
-  if (cache[coin] && now - cache[coin].timestamp < TWELVE_HOURS) {
+  if (cache[coin] && now - cache[coin].timestamp < CACHE_WINDOW) {
     return res.json(cache[coin].data);
   }
 
@@ -55,12 +56,7 @@ app.get("/api/:coin", async (req, res)=> {
 });
 
 // ----- Serve static front-end files -----
-app.use(express.static(path.join(__dirname, "public")));
-
-// Fallback for all non-API routes (serves index.html)
-app.get((req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+app.use(express.static(__dirname));
 
 // Start the Express server
 app.listen(PORT, () =>
