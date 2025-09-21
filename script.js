@@ -13,7 +13,7 @@ let priceChart, volumeChart; // Chart.js instances for later updates
  * @param {string} coin - Coin ID used by CoinGecko (e.g., "bitcoin").
  */
 async function fetchData(coin = "bitcoin") {
-    const res = await fetch(`http://localhost:3000/api/${coin}`);
+    const res = await fetch(`/api/${coin}`);
     const data = await res.json();
 
     // Ensure the API response contains the expected structure
@@ -41,7 +41,7 @@ async function fetchData(coin = "bitcoin") {
 function renderCharts(labels, prices, volumes, coin) {
    // Destroy existing charts to prevent overlap
     if(priceChart) priceChart.destroy();
-    if(volumeChart) priceChart.destroy();  // FIX: ensure correct chart is destroyed
+    if(volumeChart) volumeChart.destroy();  // FIX: ensure correct chart is destroyed
 
       // Line chart: coin price
     const priceCtx = document.getElementById("priceChart").getContext("2d");
