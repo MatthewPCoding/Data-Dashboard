@@ -18,9 +18,8 @@ async function fetchData(coin = "bitcoin") {
 
     // Ensure the API response contains the expected structure
     if (!data.prices || !data.total_volumes) {
-    console.error("API error:", data);
-    alert("Failed to load data. Check backend or API.");
-    return;
+        console.error("API error:", data);
+        return;
   }
 
     // Extracts the timestamps and prices
