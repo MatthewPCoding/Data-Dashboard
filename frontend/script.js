@@ -13,7 +13,7 @@ let priceChart, volumeChart; // Chart.js instances for later updates
  * @param {string} coin - Coin ID used by CoinGecko (e.g., "bitcoin").
  */
 async function fetchData(coin = "bitcoin") {
-    const API_BASE = "https://data-dashboard-production.up.railway.app/";
+    const API_BASE = "data-dashboard-production.up.railway.app";
     const res = await fetch(`${API_BASE}/api/${coin}`);
     const data = await res.json();
 
