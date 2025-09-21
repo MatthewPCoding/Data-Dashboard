@@ -30,6 +30,14 @@ app.get("/api/:coin", async (req, res)=> {
     }
 });
 
+// ----- Serve static front-end files -----
+app.use(express.static(path.join(__dirname, "public")));
+
+// Fallback for all non-API routes (serves index.html)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 // Start the Express server
 app.listen(PORT, () =>
 console.log(`✅ Server running on http://localhost:${PORT}`)
