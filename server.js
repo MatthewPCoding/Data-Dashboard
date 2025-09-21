@@ -11,6 +11,9 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Simple in-memory cache object
+const cache = {};
+
 // Allow cross-origin requests from the frontend
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -20,11 +23,24 @@ app.use((req, res, next) => {
 // API route: fetch 7-day market data (price & volume) for a given coin
 app.get("/api/:coin", async (req, res)=> {
     const coin = req.params.coin;
+    const now = Date.now();
+    const oneMinute = 60 * 1000;
+
+     //Serve cached data if it's less than 1 minute old
+  if (cache[coin] && now - cache[coin].timestamp < oneMinute) {
+    return res.json(cache[coin].data);
+  }
+
+
     try {
         const response = await fetch(
             `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=7`
         );
         const data = await response.json();
+
+        // Store fresh data and timestamp
+    cache[coin] = { data, timestamp: now };
+    
         res.json(data);
     } catch (err) {
         res.status(500).json({ error: "Failed to fetch data" });
