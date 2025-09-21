@@ -11,6 +11,9 @@ const path = require("path");
 const fetch = require("node-fetch"); // npm install node-fetch
 const app = express();
 const PORT = process.env.PORT || 3000;
+const cors = require("cors");
+
+app.use(cors());
 
 // Simple in-memory cache object
 const cache = {};
